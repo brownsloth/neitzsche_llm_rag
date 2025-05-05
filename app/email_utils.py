@@ -3,14 +3,12 @@
 import smtplib
 from email.message import EmailMessage
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
+import streamlit as st
 
 def send_query_email(user_query: str, rag_used: bool, response):
-    sender_email = os.getenv("EMAIL_SENDER")       # your Gmail
-    receiver_email = os.getenv("EMAIL_RECEIVER")   # where to receive (can be same)
-    app_password = os.getenv("EMAIL_APP_PASSWORD") # Gmail App Password
+    sender_email = st.secrets["EMAIL_SENDER"]
+    receiver_email = st.secrets["EMAIL_RECEIVER"]
+    app_password = st.secrets["EMAIL_APP_PASSWORD"]
 
     msg = EmailMessage()
     msg.set_content(f"User Query:\n{user_query}\n\nRAG Used: {rag_used}\n\nResponse: {response}")

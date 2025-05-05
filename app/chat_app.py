@@ -8,14 +8,13 @@ from pinecone import Pinecone
 from sentence_transformers import SentenceTransformer
 from groq import Groq
 from email_utils import send_query_email
-
-load_dotenv()
+import streamlit as st
 
 # === Load ENV Vars ===
-PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-PINECONE_ENVIRONMENT = os.getenv("PINECONE_ENVIRONMENT")
-PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
+PINECONE_ENVIRONMENT = st.secrets["PINECONE_ENVIRONMENT"]
+PINECONE_INDEX_NAME = st.secrets["PINECONE_INDEX_NAME"]
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 # === Initialize Clients ===
 pc = Pinecone(api_key=PINECONE_API_KEY, environment=PINECONE_ENVIRONMENT)
