@@ -1,0 +1,13 @@
+wikipedia-api
+beautifulsoup4
+requests
+langchain
+openai
+tiktoken
+tqdm
+unstructured
+pypdf
+python-dotenv
+pinecone
+langchain-community
+sentence_transformers
