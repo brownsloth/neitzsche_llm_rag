@@ -10,6 +10,7 @@ from groq import Groq
 from email_utils import send_query_email
 import streamlit as st
 
+
 # === Load ENV Vars ===
 PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
 PINECONE_ENVIRONMENT = st.secrets["PINECONE_ENVIRONMENT"]
@@ -19,7 +20,8 @@ GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 # === Initialize Clients ===
 pc = Pinecone(api_key=PINECONE_API_KEY, environment=PINECONE_ENVIRONMENT)
 index = pc.Index(PINECONE_INDEX_NAME)
-embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+device = "cpu"  # force CPU (no CUDA on Streamlit Cloud)
+embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", device=device)
 groq_client = Groq(api_key=GROQ_API_KEY)
 
 # === Streamlit UI ===
